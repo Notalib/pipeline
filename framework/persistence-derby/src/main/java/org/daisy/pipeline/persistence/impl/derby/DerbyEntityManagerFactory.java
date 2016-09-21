@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import org.daisy.common.properties.PropertyPublisher;
 import org.daisy.common.properties.PropertyPublisherFactory;
 import org.daisy.pipeline.persistence.ForwardingEntityManagerFactory;
-import org.osgi.service.jpa.EntityManagerFactoryBuilder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,18 +40,11 @@ public class DerbyEntityManagerFactory extends  ForwardingEntityManagerFactory{
 				DERBY_DB_URL);
 		logger.debug(DERBY_DB_URL);
 	}
-	
-	@Reference(
-		name = "EntityManagerFactoryBuilder",
-		unbind = "-",
-		service = EntityManagerFactoryBuilder.class,
-		target = "(osgi.unit.name=pipeline-pu)",
-		cardinality = ReferenceCardinality.MANDATORY,
-		policy = ReferencePolicy.STATIC
-	)
-	public void setBuilder(EntityManagerFactoryBuilder builder){
-		setEntityManagerFactory(builder.createEntityManagerFactory(props));
+
+	public DerbyEntityManagerFactory(){
+		super(props);
 	}
+
 	@Reference(
 		name = "PropertyPublisherFactory",
 		unbind = "unsetPropertyPublisherFactory",
