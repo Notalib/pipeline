@@ -33,7 +33,6 @@ import net.sf.saxon.xpath.XPathFactoryImpl;
 import org.daisy.maven.xproc.api.XProcExecutionException;
 import org.daisy.maven.xproc.api.XProcEngine;
 
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -60,30 +59,16 @@ public class XProcSpecRunner {
 		this.engine = engine;
 	}
 	
-	@Activate
-	protected void activate() {
-		if (engine == null) {
-			
-			// We are not in an OSGi environment, try with ServiceLoader
-			ServiceLoader<XProcEngine> xprocEngines = ServiceLoader.load(XProcEngine.class);
-			try {
-				engine = xprocEngines.iterator().next();
-			} catch (NoSuchElementException e) {
-				throw new RuntimeException("Could not find any XProc engines on the classpath.");
-			}
-		}
-	}
-	
 	public boolean run(Map<String,File> tests,
 	                   File reportsDir,
 	                   File surefireReportsDir,
 	                   File tempDir,
 	                   File catalog,
+	                   File config,
 	                   Reporter reporter) {
 		
-		if (engine == null)
-			activate();
 		engine.setCatalog(catalog);
+		engine.setConfiguration(config);
 		
 		URI xprocspec = asURI(XProcSpecRunner.class.getResource("/content/xml/xproc/xprocspec.xpl"));
 		URI xprocspecSummary = asURI(XProcSpecRunner.class.getResource("/xprocspec-extra/xprocspec-summary.xpl"));
@@ -165,10 +150,20 @@ public class XProcSpecRunner {
 		return totalErrors == 0 && totalFailures == 0;
 	}
 	
+	public boolean run(Map<String,File> tests,
+	                   File reportsDir,
+	                   File surefireReportsDir,
+	                   File tempDir,
+	                   File catalog,
+	                   Reporter reporter) {
+		return run(tests, reportsDir, surefireReportsDir, tempDir, catalog, null, reporter);
+	}
+	
 	public boolean run(File testsDir,
 	                   File reportsDir,
 	                   File surefireReportsDir,
 	                   File tempDir,
+	                   File configFile,
 	                   Reporter reporter) {
 		
 		Map<String,File> tests = new HashMap<String,File>();
@@ -180,7 +175,15 @@ public class XProcSpecRunner {
 				file);
 		File catalog = new File(testsDir, "catalog.xml");
 		if (!catalog.exists()) catalog = null;
-		return run(tests, reportsDir, surefireReportsDir, tempDir, catalog, reporter);
+		return run(tests, reportsDir, surefireReportsDir, tempDir, catalog, configFile, reporter);
+	}
+	
+	public boolean run(File testsDir,
+	                   File reportsDir,
+	                   File surefireReportsDir,
+	                   File tempDir,
+	                   Reporter reporter) {
+		return run(testsDir, reportsDir, surefireReportsDir, tempDir, null, reporter);
 	}
 	
 	public static interface Reporter {
