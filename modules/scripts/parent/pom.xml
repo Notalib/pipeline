@@ -71,6 +71,14 @@
         <artifactId>modules-test-helper</artifactId>
         <version>1.0.0-SNAPSHOT</version>
       </dependency>
+      <!--
+          other
+      -->
+      <dependency>
+        <groupId>org.daisy.pipeline</groupId>
+        <artifactId>ds-to-spi-runtime</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   
