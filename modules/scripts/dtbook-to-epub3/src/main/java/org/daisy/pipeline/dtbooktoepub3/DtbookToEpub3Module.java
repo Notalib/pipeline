@@ -13,7 +13,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 
 @org.osgi.service.component.annotations.Component(
-        name = "dtbook-to-epub3",
+        name = "module-dtbook-to-epub3",
         immediate = true,
         service = { Module.class }
 )
