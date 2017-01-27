@@ -88,6 +88,12 @@
     </dependency>
   </dependencies>
   
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.datatypes.impl.Datatype_px_xml_to_pef_line_spacing
+    </expose-services>
+  </properties>
+  
   <build>
     <plugins>
       <plugin>
@@ -105,6 +111,13 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Private-Package>
+              org.daisy.pipeline.datatypes.impl;-split-package:=first
+            </Private-Package>
+          </instructions>
+        </configuration>
         <executions>
           <execution>
             <id>bundle-before-test</id>

@@ -29,11 +29,6 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
-      <scope>provided</scope>
-    </dependency>
     <!--
          runtime dependencies
     -->
@@ -90,6 +85,12 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.braille.liblouis.impl.LiblouisMathMLTransform$Provider
+    </expose-services>
+  </properties>
 
   <build>
     <plugins>
@@ -112,11 +113,9 @@
           <instructions>
             <Import-Package>*</Import-Package>
             <Service-Component>OSGI-INF/liblouis-mathml-config.xml</Service-Component>
-            <!-- in order to avoid including services in the same package in other 
-              bundles -->
-            <_dsannotations>
-              org.daisy.pipeline.braille.liblouis.impl.LiblouisMathMLTransform$Provider
-            </_dsannotations>
+            <Private-Package>
+              org.daisy.pipeline.braille.liblouis.impl;-split-package:=first
+            </Private-Package>
           </instructions>
         </configuration>
         <executions>

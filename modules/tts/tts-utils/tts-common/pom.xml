@@ -43,11 +43,6 @@
       <version>1.5</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
-      <scope>provided</scope>
-    </dependency>
     <!-- For its TreeWriter -->
     <dependency>
       <groupId>org.daisy.libs</groupId>

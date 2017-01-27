@@ -99,6 +99,9 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
+            <Private-Package>
+              org.daisy.common.xproc.calabash.steps;-split-package:=first
+            </Private-Package>
             <Service-Component>
               OSGI-INF/letex-unzip.xml
             </Service-Component>

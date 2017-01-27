@@ -131,14 +131,6 @@
         <artifactId>modules-test-helper</artifactId>
         <version>1.0.0-SNAPSHOT</version>
       </dependency>
-      <!--
-          other
-      -->
-      <dependency>
-        <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.compendium</artifactId>
-        <version>4.3.0</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 

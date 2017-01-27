@@ -39,11 +39,6 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <scope>provided</scope>
@@ -84,6 +79,13 @@
     </dependency>
   </dependencies>
   
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.braille.libhyphen.impl.LibhyphenJnaImpl,
+      org.daisy.pipeline.braille.libhyphen.impl.LibhyphenTableRegistry
+    </expose-services>
+  </properties>
+  
   <build>
     <plugins>
       <plugin>
@@ -105,7 +107,6 @@
           <instructions>
             <Export-Package>org.daisy.pipeline.braille.libhyphen</Export-Package>
             <Private-Package>org.daisy.pipeline.braille.libhyphen.impl</Private-Package>
-            <_dsannotations>*</_dsannotations>
           </instructions>
         </configuration>
         <executions>
