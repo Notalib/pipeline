@@ -122,7 +122,10 @@
     <xsl:template match="cat:uri[@px:script]" mode="ds" priority="1">
         <xsl:variable name="type" select="string(document(@uri,.)/*/@type)"/>
         <xsl:variable name="id" select="if (namespace-uri-for-prefix(substring-before($type,':'),document(@uri,.)/*)='http://www.daisy.org/ns/pipeline/xproc') then substring-after($type,':') else $type"/>
-        <xsl:variable name="desc" select="(document(@uri,.)//*[tokenize(@pxd:role,'\s+')='desc'])[1]"/>
+        <xsl:variable name="desc" as="element()?" select="(document(@uri,.)//*[tokenize(@pxd:role,'\s+')='desc'])[1]"/>
+        <xsl:variable name="desc" select="if ($desc/@xml:space='preserve')
+                                          then tokenize(string($desc),'&#xa;')[1]
+                                          else normalize-space(string($desc))"/>
         <xsl:result-document href="{$outputDir}/OSGI-INF/{replace($id,'^.*:','')}.xml" method="xml">
             <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="{$id}">
                 <scr:implementation class="org.daisy.pipeline.script.XProcScriptService"/>
