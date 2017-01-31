@@ -71,14 +71,6 @@
         <artifactId>modules-test-helper</artifactId>
         <version>1.0.0-SNAPSHOT</version>
       </dependency>
-      <!--
-          other
-      -->
-      <dependency>
-        <groupId>org.daisy.pipeline</groupId>
-        <artifactId>ds-to-spi-runtime</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
   
@@ -116,11 +108,6 @@
           <groupId>org.ops4j.pax.exam</groupId>
           <artifactId>maven-paxexam-plugin</artifactId>
           <version>1.2.4</version>
-        </plugin>
-        <plugin>
-          <groupId>org.daisy.pipeline.build</groupId>
-          <artifactId>ds-to-spi-maven-plugin</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
         </plugin>
       </plugins>
     </pluginManagement>

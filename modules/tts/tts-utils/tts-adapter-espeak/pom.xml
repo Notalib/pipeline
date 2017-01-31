@@ -51,6 +51,19 @@
           </instructions>
         </configuration>
       </plugin>
+      <!--
+          disable generate-spi-classes for now
+      -->
+      <plugin>
+        <groupId>org.daisy.pipeline.build</groupId>
+        <artifactId>ds-to-spi-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-spi-classes</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 

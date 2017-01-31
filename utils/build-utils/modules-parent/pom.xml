@@ -140,6 +140,11 @@
           <artifactId>modules-build-helper</artifactId>
           <version>2.0.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.daisy.pipeline.build</groupId>
+          <artifactId>ds-to-spi-maven-plugin</artifactId>
+          <version>1.0.0-SNAPSHOT</version>
+        </plugin>
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -220,6 +225,16 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.daisy.pipeline</groupId>
+        <artifactId>ds-to-spi-runtime</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <profiles>
     <profile>
@@ -305,6 +320,11 @@
           <artifactId>org.osgi.compendium</artifactId>
           <scope>provided</scope>
         </dependency>
+        <dependency>
+          <groupId>org.daisy.pipeline</groupId>
+          <artifactId>ds-to-spi-runtime</artifactId>
+          <scope>provided</scope>
+        </dependency>
       </dependencies>
       <build>
         <plugins>
@@ -317,6 +337,22 @@
                 <Import-Package>!org.daisy.common.spi,*</Import-Package>
               </instructions>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.daisy.pipeline.build</groupId>
+            <artifactId>ds-to-spi-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-spi-classes</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>generate-spi-classes</goal>
+                </goals>
+                <configuration>
+                  <includes>${expose-services}</includes>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
