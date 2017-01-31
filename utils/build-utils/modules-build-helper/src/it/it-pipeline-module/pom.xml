@@ -53,7 +53,8 @@
   <properties>
     <expose-services>
       org.daisy.impl.Foo,
-      org.daisy.pipeline.script.impl.XProcScript_script
+      org.daisy.pipeline.script.impl.XProcScript_script,
+      org.daisy.pipeline.datatypes.impl.Datatype_px_script_option_1
     </expose-services>
   </properties>
   <build>
@@ -94,7 +95,8 @@
             <Import-Package>!org.daisy.common.spi,*</Import-Package>
             <Private-Package>
               org.daisy.impl,
-              org.daisy.pipeline.script.impl;-split-package:=first
+              org.daisy.pipeline.script.impl;-split-package:=first,
+              org.daisy.pipeline.datatypes.impl;-split-package:=first
             </Private-Package>
           </instructions>
         </configuration>
