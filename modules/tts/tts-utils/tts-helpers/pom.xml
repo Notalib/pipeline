@@ -53,6 +53,13 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.tts.config.impl.GetAnnotationsProvider,
+      org.daisy.pipeline.tts.config.impl.GetLexiconsProvider
+    </expose-services>
+  </properties>
 
   <build>
     <plugins>
@@ -64,7 +71,6 @@
             <Private-Package>
               org.daisy.pipeline.tts.config.impl
             </Private-Package>
-            <Service-Component>OSGI-INF/get-tts-annotations.xml,OSGI-INF/get-tts-lexicons.xml</Service-Component>
           </instructions>
         </configuration>
       </plugin>

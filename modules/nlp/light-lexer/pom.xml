@@ -32,6 +32,12 @@
       <artifactId>nlp-lexing</artifactId>
     </dependency>
   </dependencies>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.nlp.lexing.light.LightLexer
+    </expose-services>
+  </properties>
 
   <build>
     <plugins>
@@ -41,7 +47,6 @@
         <configuration>
           <instructions>
 	    <Export-Package />
-            <Service-Component>OSGI-INF/light-lex-service.xml</Service-Component>
           </instructions>
         </configuration>
       </plugin>

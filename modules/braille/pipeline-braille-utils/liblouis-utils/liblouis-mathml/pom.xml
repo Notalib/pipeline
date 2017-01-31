@@ -29,14 +29,13 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
-    <!--
-         runtime dependencies
-    -->
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>liblouis-utils</artifactId>
-      <scope>runtime</scope>
     </dependency>
+    <!--
+         runtime dependencies
+    -->
     <dependency>
       <groupId>org.daisy.pipeline.modules</groupId>
       <artifactId>file-utils</artifactId>
@@ -88,7 +87,8 @@
   
   <properties>
     <expose-services>
-      org.daisy.pipeline.braille.liblouis.impl.LiblouisMathMLTransform$Provider
+      org.daisy.pipeline.braille.liblouis.impl.LiblouisMathMLTransform$Provider,
+      org.daisy.pipeline.braille.liblouis.impl.LiblouisMathMLConfigPath
     </expose-services>
   </properties>
 
@@ -111,8 +111,6 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Import-Package>*</Import-Package>
-            <Service-Component>OSGI-INF/liblouis-mathml-config.xml</Service-Component>
             <Private-Package>
               org.daisy.pipeline.braille.liblouis.impl;-split-package:=first
             </Private-Package>

@@ -15,6 +15,9 @@
   <properties>
     <asciimathml.js.url>http://mathcs.chapman.edu/~jipsen/mathml/ASCIIMathML.js</asciimathml.js.url>
     <asciimathml.js.sha1>3c31edd313d5f312a5aed3719b7dd6c022111b09</asciimathml.js.sha1>
+    <expose-services>
+      org.daisy.pipeline.asciimathml.calabash.ASCIIMathMLProvider
+    </expose-services>
   </properties>
 
   <dependencies>
@@ -87,7 +90,6 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Service-Component>OSGI-INF/asciimathml.xml</Service-Component>
           </instructions>
         </configuration>
       </plugin>

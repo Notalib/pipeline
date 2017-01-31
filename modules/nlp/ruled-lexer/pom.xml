@@ -36,6 +36,12 @@
       <artifactId>nlp-lexing</artifactId>
     </dependency>
   </dependencies>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.nlp.lexing.rulebased.RuleBasedLexer
+    </expose-services>
+  </properties>
 
   <build>
     <plugins>
@@ -45,7 +51,6 @@
         <configuration>
           <instructions>
 	    <Export-Package />
-            <Service-Component>OSGI-INF/ruled-lex-service.xml</Service-Component>
           </instructions>
         </configuration>
       </plugin>

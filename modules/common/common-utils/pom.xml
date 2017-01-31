@@ -66,6 +66,12 @@
     </dependency>
   </dependencies>
 
+  <properties>
+    <expose-services>
+      org.daisy.common.xproc.calabash.steps.Message
+    </expose-services>
+  </properties>
+  
   <build>
     <plugins>
       <plugin>
@@ -96,9 +102,8 @@
         <configuration>
           <instructions>
             <Private-Package>
-              org.daisy.common.xproc.calabash.steps;-split-package:=first
+              org.daisy.common.xproc.calabash.steps;-split-package:=merge-first
             </Private-Package>
-            <Service-Component>OSGI-INF/message.xml</Service-Component>
           </instructions>
         </configuration>
         <executions>

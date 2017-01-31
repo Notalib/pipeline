@@ -70,6 +70,12 @@
     </dependency>
   </dependencies>
 
+  <properties>
+    <expose-services>
+      org.daisy.common.xproc.calabash.steps.UnZipProvider
+    </expose-services>
+  </properties>
+  
   <build>
     <plugins>
       <plugin>
@@ -102,9 +108,6 @@
             <Private-Package>
               org.daisy.common.xproc.calabash.steps;-split-package:=first
             </Private-Package>
-            <Service-Component>
-              OSGI-INF/letex-unzip.xml
-            </Service-Component>
           </instructions>
         </configuration>
         <executions>

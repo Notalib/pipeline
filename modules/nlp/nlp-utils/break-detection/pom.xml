@@ -69,6 +69,12 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.nlp.breakdetect.BreakDetectProvider
+    </expose-services>
+  </properties>
 
    <build>
     <plugins>
@@ -78,7 +84,6 @@
         <configuration>
           <instructions>
             <Export-Package />
-            <Service-Component>OSGI-INF/break-detect.xml</Service-Component>
           </instructions>
         </configuration>
       </plugin>

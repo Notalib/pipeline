@@ -106,7 +106,9 @@
         <configuration>
           <instructions>
             <Export-Package>org.daisy.pipeline.braille.libhyphen</Export-Package>
-            <Private-Package>org.daisy.pipeline.braille.libhyphen.impl</Private-Package>
+            <Private-Package>
+              org.daisy.pipeline.braille.libhyphen.impl;-split-package:=first
+            </Private-Package>
           </instructions>
         </configuration>
         <executions>

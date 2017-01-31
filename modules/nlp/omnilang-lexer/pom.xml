@@ -32,20 +32,11 @@
       <artifactId>nlp-lexing</artifactId>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
-	    <Export-Package />
-            <Service-Component>OSGI-INF/omnilang-lex-service.xml</Service-Component>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.nlp.lexing.omni.OmnilangLexer
+    </expose-services>
+  </properties>
 
 </project>

@@ -82,6 +82,7 @@
       org.daisy.pipeline.braille.liblouis.impl.LiblouisTableRegistry,
       org.daisy.pipeline.braille.liblouis.impl.LiblouisTranslatorJnaImplProvider,
       org.daisy.pipeline.braille.liblouis.impl.LiblouisutdmlProcessBuilderImpl,
+      org.daisy.pipeline.braille.liblouis.impl.LiblouisutdmlConfigRegistry,
       org.daisy.pipeline.braille.liblouis.pef.impl.LiblouisDisplayTableProvider
     </expose-services>
   </properties>
@@ -110,9 +111,6 @@
               org.daisy.pipeline.braille.liblouis.impl,
               org.daisy.pipeline.braille.liblouis.pef.impl
             </Private-Package>
-            <Service-Component>
-              OSGI-INF/liblouisutdml-config-registry.xml
-            </Service-Component>
           </instructions>
         </configuration>
         <executions>
