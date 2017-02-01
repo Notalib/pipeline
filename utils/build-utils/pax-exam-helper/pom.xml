@@ -226,6 +226,7 @@
               <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
               <postBuildHookScript>verify</postBuildHookScript>
               <properties>
+                <org.ops4j.pax.url.mvn.localRepository>${project.build.directory}/local-repo</org.ops4j.pax.url.mvn.localRepository>
                 <pax-exam-helper.version>${project.version}</pax-exam-helper.version>
                 <xspec-runner.version>${xspec-runner.version}</xspec-runner.version>
                 <xprocspec.version>${xprocspec.version}</xprocspec.version>
