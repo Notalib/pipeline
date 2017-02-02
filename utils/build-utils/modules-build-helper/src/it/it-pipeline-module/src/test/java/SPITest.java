@@ -1,31 +1,30 @@
-import java.util.Iterator;
-import java.util.ServiceLoader;
+import javax.inject.Inject;
 
 import org.daisy.pipeline.datatypes.DatatypeService;
 import org.daisy.pipeline.script.XProcScriptService;
 
+import org.daisy.pipeline.junit.OSGiLessRunner;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.runner.RunWith;
 import org.junit.Test;
 
+@RunWith(OSGiLessRunner.class)
 public class SPITest {
+	
+	@Inject
+	public DatatypeService datatype;
 	
 	@Test
 	public void testDatatype() {
-		Iterator<DatatypeService> datatypes = ServiceLoader.load(DatatypeService.class).iterator();
-		assertTrue(datatypes.hasNext());
-		DatatypeService d = datatypes.next();
-		assertEquals("px:script-option-1", d.getId());
-		assertFalse(datatypes.hasNext());
+		assertEquals("px:script-option-1", datatype.getId());
 	}
+	
+	@Inject
+	public XProcScriptService script;
 	
 	@Test
 	public void testScript() {
-		Iterator<XProcScriptService> scripts = ServiceLoader.load(XProcScriptService.class).iterator();
-		assertTrue(scripts.hasNext());
-		XProcScriptService s = scripts.next();
-		assertEquals("script", s.getId());
-		assertFalse(scripts.hasNext());
+		assertEquals("script", script.getId());
 	}
 }

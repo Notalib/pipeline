@@ -55,6 +55,12 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline.build</groupId>
+      <artifactId>modules-test-helper</artifactId>
+      <version>${modules-test-helper.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <properties>
     <expose-services>
