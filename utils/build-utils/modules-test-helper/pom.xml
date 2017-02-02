@@ -123,6 +123,7 @@
               org.daisy.maven.xproc.xprocspec;resolution:=optional,
               org.daisy.maven.xspec;resolution:=optional,
               org.ops4j.pax.exam.junit;resolution:=optional,
+              org.ops4j.pax.exam.junit.impl;resolution:=optional,
               org.daisy.pipeline.pax.exam;resolution:=optional,
               org.ops4j.pax.exam.spi.reactors;resolution:=optional,
               *
