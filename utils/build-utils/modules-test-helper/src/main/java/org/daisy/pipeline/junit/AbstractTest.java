@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.options;
+import static org.ops4j.pax.exam.CoreOptions.systemPackage;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -32,6 +33,10 @@ public abstract class AbstractTest {
 		return "org.daisy.pipeline.modules:" + module + ":?";
 	}
 	
+	protected String brailleModule(String module) {
+		return "org.daisy.pipeline.modules.braille:" + module + ":?";
+	}
+	
 	@Configuration
 	public Option[] config() {
 		return _.config(
@@ -41,10 +46,11 @@ public abstract class AbstractTest {
 	
 	// wrapped in class to avoid ClassNotFoundException
 	protected static abstract class _ {
-		protected static Option[] config(Option systemProperties, MavenBundleOption testDependencies) {
+		public static Option[] config(Option systemProperties, MavenBundleOption testDependencies) {
 			return options(
 				systemProperties,
 				domTraversalPackage(),
+				systemPackage("javax.xml.stream;version=\"1.0.1\""),
 				felixDeclarativeServices(),
 				thisBundle(),
 				junitBundles(),

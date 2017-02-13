@@ -36,28 +36,19 @@ import org.daisy.pipeline.braille.liblouis.LiblouisTranslator;
 import org.daisy.pipeline.braille.liblouis.LiblouisTranslator.Typeform;
 import org.daisy.pipeline.braille.pef.TableProvider;
 
-import static org.daisy.pipeline.pax.exam.Options.brailleModule;
-import static org.daisy.pipeline.pax.exam.Options.domTraversalPackage;
-import static org.daisy.pipeline.pax.exam.Options.felixDeclarativeServices;
-import static org.daisy.pipeline.pax.exam.Options.logbackClassic;
-import static org.daisy.pipeline.pax.exam.Options.logbackConfigFile;
-import static org.daisy.pipeline.pax.exam.Options.mavenBundle;
-import static org.daisy.pipeline.pax.exam.Options.mavenBundlesWithDependencies;
-import static org.daisy.pipeline.pax.exam.Options.thisBundle;
+import org.daisy.pipeline.junit.AbstractTest;
+
+import static org.daisy.pipeline.pax.exam.Options.thisPlatform;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import org.ops4j.pax.exam.Configuration;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
+import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.options;
-import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
-import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.ops4j.pax.exam.util.PathUtils;
 
 import org.osgi.framework.BundleContext;
@@ -67,9 +58,7 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RunWith(PaxExam.class)
-@ExamReactorStrategy(PerClass.class)
-public class LiblouisCoreTest {
+public class LiblouisCoreTest extends AbstractTest {
 	
 	@Inject
 	LiblouisTranslator.Provider provider;
@@ -85,25 +74,23 @@ public class LiblouisCoreTest {
 	
 	private static final Logger messageBus = LoggerFactory.getLogger("JOB_MESSAGES");
 	
-	@Configuration
+	@Override
+	protected String[] testDependencies() {
+		return new String[] {
+			"org.liblouis:liblouis-java:?",
+			"org.daisy.braille:braille-utils.api:?",
+			brailleModule("common-utils"),
+			brailleModule("pef-core"),
+			brailleModule("css-core"),
+			"org.daisy.pipeline.modules.braille:liblouis-native:jar:" + thisPlatform() + ":?"
+		};
+	}
+	
+	@Override @Configuration
 	public Option[] config() {
 		return options(
-			logbackConfigFile(),
-			domTraversalPackage(),
-			felixDeclarativeServices(),
-			thisBundle(),
-			junitBundles(),
-			mavenBundlesWithDependencies(
-				mavenBundle("org.liblouis:liblouis-java:?"),
-				mavenBundle("org.daisy.braille:braille-utils.api:?"),
-				brailleModule("common-utils"),
-				brailleModule("pef-core"),
-				brailleModule("css-core"),
-				brailleModule("liblouis-native").forThisPlatform(),
-				// logging
-				logbackClassic()),
-			bundle("reference:file:" + PathUtils.getBaseDir() + "/target/test-classes/table_paths/")
-		);
+			composite(super.config()),
+			bundle("reference:file:" + PathUtils.getBaseDir() + "/target/test-classes/table_paths/"));
 	}
 	
 	@Test

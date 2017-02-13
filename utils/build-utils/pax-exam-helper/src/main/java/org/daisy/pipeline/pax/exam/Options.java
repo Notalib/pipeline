@@ -527,7 +527,7 @@ public abstract class Options {
 		return b.toString();
 	}
 	
-	private static String thisPlatform() {
+	public static String thisPlatform() {
 		String name = System.getProperty("os.name").toLowerCase();
 		if (name.startsWith("windows"))
 			return "windows";

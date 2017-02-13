@@ -27,7 +27,7 @@ import org.ops4j.pax.exam.util.PathUtils;
 public abstract class AbstractXSpecAndXProcSpecTest extends AbstractTest {
 	
 	@Inject
-	XSpecRunner xspecRunner;
+	protected XSpecRunner xspecRunner;
 	
 	@Test
 	public void runXSpec() throws Exception {
@@ -42,7 +42,7 @@ public abstract class AbstractXSpecAndXProcSpecTest extends AbstractTest {
 	}
 	
 	@Inject
-	XProcSpecRunner xprocspecRunner;
+	protected XProcSpecRunner xprocspecRunner;
 	
 	@Test
 	public void runXProcSpec() throws Exception {
