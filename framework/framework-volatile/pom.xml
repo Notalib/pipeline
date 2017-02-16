@@ -47,7 +47,12 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <_dsannotations>*</_dsannotations>
+            <_dsannotations>
+              org.daisy.pipeline.nonpersistent.impl.job.VolatileJobMonitorFactory,
+              org.daisy.pipeline.nonpersistent.impl.job.VolatileJobStorage,
+              org.daisy.pipeline.nonpersistent.impl.messaging.VolatileMessageEventListener;
+              org.daisy.pipeline.nonpersistent.impl.webservice.VolatileWebserviceStorage
+            </_dsannotations>
             <Import-Package>!org.daisy.common.spi,*</Import-Package>
           </instructions>
         </configuration>
@@ -63,7 +68,12 @@
               <goal>generate-spi-classes</goal>
             </goals>
             <configuration>
-              <includes>*</includes>
+              <includes>
+                org.daisy.pipeline.nonpersistent.impl.job.VolatileJobMonitorFactory,
+                org.daisy.pipeline.nonpersistent.impl.job.VolatileJobStorage,
+                org.daisy.pipeline.nonpersistent.impl.messaging.VolatileMessageEventListener;
+                org.daisy.pipeline.nonpersistent.impl.webservice.VolatileWebserviceStorage
+              </includes>
             </configuration>
           </execution>
         </executions>

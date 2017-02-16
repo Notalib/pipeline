@@ -49,7 +49,10 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <_dsannotations>*</_dsannotations>
+            <_dsannotations>
+              org.daisy.pipeline.modules.impl.resolver.ModuleUriResolver,
+              org.daisy.pipeline.modules.impl.tracker.DefaultModuleRegistry
+            </_dsannotations>
             <Import-Package>!org.daisy.common.spi,*</Import-Package>
           </instructions>
         </configuration>
@@ -65,7 +68,10 @@
               <goal>generate-spi-classes</goal>
             </goals>
             <configuration>
-              <includes>*</includes>
+              <includes>
+                org.daisy.pipeline.modules.impl.resolver.ModuleUriResolver,
+                org.daisy.pipeline.modules.impl.tracker.DefaultModuleRegistry
+              </includes>
             </configuration>
           </execution>
         </executions>

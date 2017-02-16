@@ -91,7 +91,10 @@
         <configuration>
           <instructions>
             <Import-Package>*, etc</Import-Package>
-            <_dsannotations>*</_dsannotations>
+            <_dsannotations>
+              org.daisy.common.xproc.calabash.impl.CalabashXProcEngine,
+              org.daisy.common.xproc.calabash.impl.DynamicXProcConfigurationFactory
+            </_dsannotations>
           </instructions>
         </configuration>
       </plugin>

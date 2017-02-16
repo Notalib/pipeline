@@ -74,7 +74,10 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <_dsannotations>*</_dsannotations>
+            <_dsannotations>
+              org.daisy.common.properties.PropertyPublisherFactory,
+              org.daisy.common.properties.PropertyTracker
+            </_dsannotations>
             <Import-Package>!org.daisy.common.spi,*</Import-Package>
           </instructions>
         </configuration>
@@ -90,7 +93,10 @@
               <goal>generate-spi-classes</goal>
             </goals>
             <configuration>
-              <includes>*</includes>
+              <includes>
+                org.daisy.common.properties.PropertyPublisherFactory,
+                org.daisy.common.properties.PropertyTracker
+              </includes>
             </configuration>
           </execution>
         </executions>
