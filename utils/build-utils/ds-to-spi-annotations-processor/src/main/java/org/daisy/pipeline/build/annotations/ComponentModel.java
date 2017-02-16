@@ -70,6 +70,7 @@ public class ComponentModel {
 		String methodName;
 		String service;
 		String cardinality;
+		Class<?> propertiesArgumentType;
 		
 		public String getMethodName() {
 			return methodName;
@@ -81,6 +82,10 @@ public class ComponentModel {
 		
 		public String getCardinality() {
 			return cardinality;
+		}
+		
+		public Class<?> getPropertiesArgumentType() {
+			return propertiesArgumentType;
 		}
 	}
 	
