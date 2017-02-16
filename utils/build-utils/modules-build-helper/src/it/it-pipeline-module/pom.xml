@@ -35,6 +35,10 @@
   <dependencies>
     <dependency>
       <groupId>org.daisy.pipeline</groupId>
+      <artifactId>modules-registry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
       <artifactId>framework-core</artifactId>
     </dependency>
     <dependency>
@@ -65,6 +69,7 @@
   <properties>
     <expose-services>
       org.daisy.impl.Foo,
+      org.daisy.pipeline.modules.impl.Module_it_pipeline_module,
       org.daisy.pipeline.script.impl.XProcScript_script,
       org.daisy.pipeline.datatypes.impl.Datatype_px_script_option_1
     </expose-services>
@@ -107,6 +112,7 @@
             <Import-Package>!org.daisy.common.spi,*</Import-Package>
             <Private-Package>
               org.daisy.impl,
+              org.daisy.pipeline.modules.impl;-split-package:=first,
               org.daisy.pipeline.script.impl;-split-package:=first,
               org.daisy.pipeline.datatypes.impl;-split-package:=first
             </Private-Package>

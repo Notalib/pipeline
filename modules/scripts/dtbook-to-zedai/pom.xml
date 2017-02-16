@@ -21,6 +21,14 @@
       <groupId>org.daisy.pipeline</groupId>
       <artifactId>framework-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>modules-registry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>xmlcatalog</artifactId>
+    </dependency>
     <!--
         runtime dependencies
     -->
@@ -81,6 +89,7 @@
 
   <properties>
     <expose-services>
+      org.daisy.pipeline.modules.impl.Module_dtbook_to_zedai,
       org.daisy.pipeline.script.impl.XProcScript_dtbook_to_zedai
     </expose-services>
   </properties>
@@ -93,6 +102,7 @@
         <configuration>
           <instructions>
             <Private-Package>
+              org.daisy.pipeline.modules.impl;-split-package:=first,
               org.daisy.pipeline.script.impl;-split-package:=first
             </Private-Package>
           </instructions>

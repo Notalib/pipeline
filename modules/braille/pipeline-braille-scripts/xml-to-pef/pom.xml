@@ -21,6 +21,14 @@
       <groupId>org.daisy.pipeline</groupId>
       <artifactId>framework-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>modules-registry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>xmlcatalog</artifactId>
+    </dependency>
     <!--
         runtime dependencies
     -->
@@ -90,6 +98,7 @@
   
   <properties>
     <expose-services>
+      org.daisy.pipeline.modules.impl.Module_xml_to_pef,
       org.daisy.pipeline.datatypes.impl.Datatype_px_xml_to_pef_line_spacing
     </expose-services>
   </properties>
@@ -114,6 +123,7 @@
         <configuration>
           <instructions>
             <Private-Package>
+              org.daisy.pipeline.modules.impl;-split-package:=first,
               org.daisy.pipeline.datatypes.impl;-split-package:=first
             </Private-Package>
           </instructions>

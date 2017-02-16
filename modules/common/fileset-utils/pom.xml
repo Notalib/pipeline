@@ -17,6 +17,14 @@
   <name>DAISY Pipeline 2 module :: File Set Utilities</name>
 
   <dependencies>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>modules-registry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>xmlcatalog</artifactId>
+    </dependency>
     <!--
         runtime dependencies
     -->
@@ -80,6 +88,12 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <properties>
+    <expose-services>
+      org.daisy.pipeline.modules.impl.Module_fileset_utils
+    </expose-services>
+  </properties>
 
   <build>
     <plugins>
@@ -108,6 +122,13 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Private-Package>
+              org.daisy.pipeline.modules.impl;-split-package:=first
+            </Private-Package>
+          </instructions>
+        </configuration>
         <executions>
           <execution>
             <id>manifest-before-test</id>

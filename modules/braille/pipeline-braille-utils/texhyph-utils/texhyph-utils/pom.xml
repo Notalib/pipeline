@@ -17,6 +17,14 @@
   <name>DP2 Braille Modules :: texhyph-utils :: texhyph-utils</name>
 
   <dependencies>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>modules-registry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>xmlcatalog</artifactId>
+    </dependency>
     <!--
         optional runtime dependencies (but keep mandatory as long as there is only one implementation)
     -->

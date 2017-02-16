@@ -21,6 +21,14 @@
       <groupId>org.daisy.pipeline</groupId>
       <artifactId>framework-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>modules-registry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>xmlcatalog</artifactId>
+    </dependency>
     <!--
         runtime dependencies
     -->

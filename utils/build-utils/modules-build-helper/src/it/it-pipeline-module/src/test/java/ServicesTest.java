@@ -33,13 +33,8 @@ public class ServicesTest extends AbstractTest {
 	@Override
 	protected String[] testDependencies() {
 		return new String[]{
-			"org.daisy.pipeline:framework-core:?"
+			"org.daisy.pipeline:framework-core:?",
+			"org.daisy.pipeline:modules-registry:?"
 		};
-	}
-	
-	@ProbeBuilder
-	public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {
-		probe.setHeader("Service-Component", "OSGI-INF/resolver-mock.xml");
-		return probe;
 	}
 }
