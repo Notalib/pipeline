@@ -168,6 +168,10 @@
             <goals>
               <goal>xprocspec</goal>
             </goals>
+            <configuration>
+              <xprocspecDirectory>src/it/xprocspec</xprocspecDirectory>
+              <reportsDirectory>${project.build.directory}/xprocspec-reports-it</reportsDirectory>
+            </configuration>
           </execution>
         </executions>
         <dependencies>
