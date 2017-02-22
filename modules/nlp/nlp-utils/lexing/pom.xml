@@ -18,6 +18,10 @@
   <description>Common API for Lexing functionality</description>
 
   <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
     <!-- for its language definition -->
     <dependency>
       <groupId>org.daisy.pipeline.modules</groupId>
