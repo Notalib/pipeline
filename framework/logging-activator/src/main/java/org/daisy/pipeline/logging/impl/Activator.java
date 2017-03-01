@@ -1,26 +1,19 @@
 package org.daisy.pipeline.logging.impl;
 
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * OSGI logging configuration class. Activates the standard java logging bridge for SLF4J.
  */
-public class Activator implements BundleActivator {
-
-	/* (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void start(BundleContext bundleContext) throws Exception {
+@Component(
+	name = "logging-activator",
+	immediate = true
+)
+public class Activator {
+	
+	@Activate
+	public void start() {
 		JulToSlf4jBridgeSetup.setup();
 	}
-
-	/* (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void stop(BundleContext bundleContext) throws Exception {
-	}
-
 }
