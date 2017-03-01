@@ -19,7 +19,6 @@
   <description>Aggregator POM to build all the DAISY Pipeline 2</description>
 
   <modules>
-    <module>calabash</module>
     <!-- <module>jing</module> --> <!-- FIXME: "The svn command failed" -->
     <module>jnaerator</module>
     <module>jsslutils</module>
