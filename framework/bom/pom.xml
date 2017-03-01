@@ -43,7 +43,7 @@
 
     <!-- Dependencies Versions -->
     <benchmark.version>0.7.2</benchmark.version>
-    <calabash.version>1.0.23</calabash.version>
+    <calabash.version>1.1.9-p1-96-SNAPSHOT</calabash.version>
     <commons.codec.version>1.6</commons.codec.version>
     <commons.fileupload.version>1.2.2</commons.fileupload.version>
     <commons.io.version>2.3</commons.io.version>
@@ -60,7 +60,7 @@
     <osgi.version>4.3.1</osgi.version>
     <powermock.version>1.5.4</powermock.version>
     <restlet.version>2.1-RC6</restlet.version>
-    <saxon-he.version>9.5.1.5</saxon-he.version>
+    <saxon-he.version>9.6.0.9-p1-SNAPSHOT</saxon-he.version>
     <slf4j.version>1.7.2</slf4j.version>
     <woodstox.core.version>4.1.2</woodstox.core.version>
     <woodstox.stax2-api.version>3.1.1</woodstox.stax2-api.version>
@@ -215,6 +215,10 @@
         <version>${calabash.version}</version>
         <exclusions>
           <exclusion>
+            <groupId>com.thaiopensource</groupId>
+            <artifactId>jing</artifactId>
+          </exclusion>
+          <exclusion>
             <groupId>net.sf.saxon</groupId>
             <artifactId>Saxon-HE</artifactId>
           </exclusion>
@@ -272,6 +276,10 @@
         <!-- TODO remove when the fix to issue 1501 is pushed to Maven Central
              see http://dev.saxonica.com/community/issues/1501 -->
         <exclusions>
+          <exclusion>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+          </exclusion>
           <exclusion>
             <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
