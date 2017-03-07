@@ -100,6 +100,7 @@
             <xproc-maven-plugin.version>${project.version}</xproc-maven-plugin.version>
             <xproc-engine-calabash.version>${xproc-engine-calabash.version}</xproc-engine-calabash.version>
           </properties>
+          <mavenOpts>-Dorg.slf4j.simpleLogger.log.com.xmlcalabash=trace</mavenOpts>
           <goals>
             <goal>surefire-report:report</goal>
           </goals>
