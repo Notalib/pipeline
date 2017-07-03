@@ -185,6 +185,7 @@ $(SAXON) :
 				cp $$pom $$dest; \
 			fi \
 		done && \
+		bash .make/mvn-install.sh utils/nar-maven-plugin && \
 		$(MVN) --projects $$(cat $< |paste -sd , -) help:effective-pom -Doutput=$(CURDIR)/$@ >maven.log; \
 	else \
 		touch $@; \
