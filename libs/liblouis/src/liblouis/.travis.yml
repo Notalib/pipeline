@@ -1,0 +1,64 @@
+# define liblouis so that Travis CI service can build and test it
+
+# require Trusty so we have a modern version of texinfo (> 5.0) and
+# automake (> 1.14)
+sudo: required
+dist: trusty
+
+language: c
+
+services:
+  - docker
+
+matrix:
+  include:
+    - compiler: gcc
+      env: BUILD_GCC=yes
+    - compiler: gcc
+      env: BUILD_GCC=yes ENABLE_UCS4=--enable-ucs4
+    - compiler: i586-mingw32msvc-gcc
+      env: BUILD_MINGW=yes
+    - compiler: gcc
+      env: BUILD_JS=yes
+
+before_install:
+  - sudo apt-get update -qq
+  - 'chmod +x ./.travis/before_install/*.sh'
+  - 'chmod +x ./.travis/script/*.sh'
+  - 'chmod +x ./.travis/after_success/*.sh'
+  - if [ "$BUILD_MINGW" == yes ]; then
+        source .travis/before_install/mingw.sh;
+    elif [ "$BUILD_JS" == yes ]; then
+        source .travis/before_install/emscripten.sh;
+    else
+        source .travis/before_install/gcc.sh;
+    fi
+
+script:
+  - cd $TRAVIS_BUILD_DIR
+  - if [ "$BUILD_MINGW" == yes ]; then
+        source .travis/script/mingw.sh;
+    elif [ "$BUILD_JS" == yes ]; then
+        source .travis/script/emscripten.sh;
+    else
+        source .travis/script/gcc.sh;
+    fi
+
+after_failure:
+  - if [ -z "$BUILD_JS" ]; then
+        cat tests/test-suite.log;
+    fi
+
+after_success:
+  - if [ "$BUILD_JS" == yes ]; then
+        source .travis/after_success/emscripten.sh;
+    fi
+
+# tell the irc channel about the results of the build
+notifications:
+   irc: "irc.oftc.net#liblouis"
+
+# do not build on the following branches
+branches:
+  except:
+    - ikiwiki_ctl

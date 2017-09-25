@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.liblouis</groupId>
 	<artifactId>louis</artifactId>
-	<version>3.0.0</version>
+	<version>3.2.0-SNAPSHOT</version>
 	<packaging>nar</packaging>
 	<name>liblouis-nar</name>
 	<description>liblouis packaged in a NAR (Native ARchive).</description>
@@ -36,31 +36,25 @@
 		<nar.host.option/>
 	</properties>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.github.maven-nar</groupId>
+					<artifactId>nar-maven-plugin</artifactId>
+					<!--
+					    depends on branch "bertfrees"
+					-->
+					<version>3.5.3-SNAPSHOT</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
-				<artifactId>maven-scm-plugin</artifactId>
-				<version>1.9</version>
-				<executions>
-					<execution>
-						<id>checkout-sources</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>checkout</goal>
-						</goals>
-						<configuration>
-							<connectionUrl>scm:git:git://github.com/liblouis/liblouis.git</connectionUrl>
-							<scmVersion>v3.0.0</scmVersion>
-							<scmVersionType>tag</scmVersionType>
-							<skipCheckoutIfExists>true</skipCheckoutIfExists>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-nar-plugin</artifactId>
-				<version>2.1-SNAPSHOT</version>
+				<groupId>com.github.maven-nar</groupId>
+				<artifactId>nar-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
+					<gnuSourceDirectory>target/generated-sources/liblouis</gnuSourceDirectory>
 					<gnuConfigureArgs>${nar.host.option}</gnuConfigureArgs>
 					<libraries>
 						<library>
@@ -85,11 +79,11 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>src/gnu</outputDirectory>
+							<outputDirectory>target/generated-sources/liblouis</outputDirectory>
 							<overwrite>true</overwrite>
 							<resources>
 								<resource>
-									<directory>target/checkout</directory>
+									<directory>src/liblouis</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -129,41 +123,31 @@
 							<goal>shell</goal>
 						</goals>
 						<configuration>
-							<workDir>src/gnu</workDir>
+							<workDir>target/generated-sources/liblouis</workDir>
 							<script>
 								#!/bin/sh
 								sed \
 								-e 's|^\(liblouis_la_LDFLAGS =\)\(.*\)$|\1 ${nar.install_name.option} ${nar.rpath.option} -avoid-version \2|' \
-								../../target/checkout/liblouis/Makefile.am > liblouis/Makefile.am
+								../../../src/liblouis/liblouis/Makefile.am > liblouis/Makefile.am
 								sed \
 								-e 's|^\(AC_INIT(\[Liblouis\],\)[^,]*\(,.*\)$|\1 [${project.version}]\2|' \
 								-e '/^AC_INIT.*$/a\
 								CFLAGS="$CFLAGS ${nar.arch.option}"\
 								' \
-								../../target/checkout/configure.ac > configure.ac
+								../../../src/liblouis/configure.ac > configure.ac
 								sed \
 								-e '/^prefix=/d' \
 								-e '/^exec_prefix=/d' \
 								-e '/^tablesdir=/d' \
 								-e 's|@libdir@|@NAR@/lib/${nar.aol}/shared|' \
 								-e 's|@includedir@|@NAR@/include|' \
-								../../target/checkout/liblouis.pc.in > liblouis.pc.in
+								../../../src/liblouis/liblouis.pc.in > liblouis.pc.in
 								mkdir m4
 								touch m4/.keep
 							</script>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>src</directory>
-						</fileset>
-					</filesets>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -215,7 +199,8 @@
 			<build>
 				<plugins>
 					<plugin>
-						<artifactId>maven-nar-plugin</artifactId>
+						<groupId>com.github.maven-nar</groupId>
+						<artifactId>nar-maven-plugin</artifactId>
 						<configuration>
 							<os>${host.os}</os>
 							<linker>
@@ -257,16 +242,6 @@
 			</build>
 		</profile>
 	</profiles>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>bertfrees-github-snapshots</id>
-			<url>http://bertfrees.github.com/snapshots</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>duns-maven-snapshots</id>
-			<url>http://duns.github.com/maven-snapshots</url>
-		</pluginRepository>
-	</pluginRepositories>
 	<distributionManagement>
 		<repository>
 			<id>sonatype-nexus-staging</id>
